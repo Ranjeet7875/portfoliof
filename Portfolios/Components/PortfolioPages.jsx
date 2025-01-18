@@ -218,26 +218,41 @@ const Portfolio = () => {
 </section>
       {/* Skills Section */}
       <section id="skills" className="py-24 bg-white px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Skills & Technologies</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((category, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-4">{category.name}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.items.map((skill, i) => (
-                    <span key={i} className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Skills & Technologies
+        </h2>
+        <p className="text-xl text-gray-600 text-center mb-12">
+          My technical toolkit for building amazing applications
+        </p>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {skills.map((category, index) => (
+            <div 
+              key={index} 
+              className="bg-gray-50 rounded-xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+              <div className="text-4xl mb-4 text-center">{category.icon}</div>
+              <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
+                {category.name}
+              </h3>
+              <div className="space-y-4">
+                {category.items.map((skill, i) => (
+                  <div 
+                    key={i} 
+                    className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+                  >
+                    <p className="text-lg text-center text-gray-700 font-medium">
                       {skill}
-                    </span>
-                  ))}
-                </div>
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </section>
-      {/*start*/}
-      
+      </div>
+    </section>
 
     {/* Contact Section */}
 <section id="contact" className="py-24 px-4 bg-gray-100">
