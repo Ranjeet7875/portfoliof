@@ -32,23 +32,26 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "Nykaa Clone WebSite",
+      title: "Nykaa Clone Website",
       description: "Front End e-commerce solution with Javascript and Html & Css",
-      tech: ["Html", "Css", "Firebase", "RestFull Api","Javascript"],
-      image: Nyka
+      tech: ["Html", "Css", "Firebase", "RestFull API", "Javascript"],
+      image: Nyka,
+      link: "https://cyberspacecrusders011.netlify.app/",
     },
     {
       title: "Task Management App",
       description: "Collaborative task management platform",
       tech: ["Javascript", "Css", "Html"],
-      image: Task
+      image: Task,
+      link: "https://masai-task-managerr.netlify.app/",
     },
     {
       title: "Reebok Clone",
       description: "Content generation tool using OpenAI API",
-      tech: ["Javascript", "Firebase", "RestFull Api","Html & Css"],
-      image: Reebok
-    }
+      tech: ["Javascript", "Firebase", "RestFull API", "Html & Css"],
+      image: Reebok,
+      link: "https://reebokclones.netlify.app/",
+    },
   ];
 
   const skills = [
@@ -93,20 +96,48 @@ const Portfolio = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
-            {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block px-3 py-2 text-gray-600 hover:text-blue-600"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
+        {/* Mobile Menu with Smooth Transitions */}
+<div 
+  className={`
+    fixed top-16 left-0 w-full transform transition-transform duration-300 ease-in-out md:hidden
+    ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}
+  `}
+>
+  <div className="bg-white shadow-lg rounded-b-lg mx-4">
+    <div className="max-h-[80vh] overflow-y-auto">
+      {['Home', 'About', 'Resume', 'Projects', 'Skills', 'Contact'].map((item) => (
+        <a
+          key={item}
+          href={`#${item.toLowerCase()}`}
+          className={`
+            block px-6 py-4 text-base font-medium
+            border-b border-gray-100 last:border-b-0
+            text-gray-600 hover:text-blue-600 hover:bg-blue-50
+            transition-all duration-200 ease-in-out
+            ${activeSection === item.toLowerCase() ? 'text-blue-600 bg-blue-50' : ''}
+          `}
+          onClick={() => {
+            setIsMenuOpen(false);
+            // Smooth scroll to section
+            document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          {item}
+        </a>
+      ))}
+    </div>
+  </div>
+  
+  {/* Backdrop */}
+  <div 
+    className={`
+      fixed inset-0 bg-black/20 backdrop-blur-sm z-[-1]
+      transition-opacity duration-300 ease-in-out
+      ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+    `}
+    onClick={() => setIsMenuOpen(false)}
+  />
+</div>
       </nav>
 
       {/* Hero Section */}
@@ -170,31 +201,47 @@ const Portfolio = () => {
 
       {/* Projects Section */}
       <section id="projects" className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech, i) => (
-                      <span key={i} className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <a href="https://cyberspacecrusders011.netlify.app/" target="_blank" className="text-blue-600 hover:text-blue-700 flex items-center gap-2">
-                    View Project <ExternalLinkIcon size={16} />
-                  </a>
-                </div>
-              </div>
-            ))}
+  <div className="max-w-6xl mx-auto">
+    <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project, index) => (
+        <div
+          key={index}
+          className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-6">
+            <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+            <p className="text-gray-600 mb-4">{project.description}</p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tech.map((tech, i) => (
+                <span
+                  key={i}
+                  className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 flex items-center gap-2"
+            >
+              View Project <ExternalLinkIcon size={16} />
+            </a>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
 {/* Resume Section */}
 <section id="resume" className="py-20 px-4 bg-gray-50">
@@ -255,71 +302,140 @@ const Portfolio = () => {
     </section>
 
     {/* Contact Section */}
-<section id="contact" className="py-24 px-4 bg-gray-100">
+{/* Contact Section */}
+<section id="contact" className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-100">
   <div className="max-w-6xl mx-auto">
-    <h2 className="text-4xl font-extrabold text-gray-800 mb-16 text-center">Contact Me</h2>
-    <div className="grid lg:grid-cols-2 gap-12">
-      {/* Contact Information */}
-      <div className="bg-white rounded-xl shadow-lg p-10">
-        <h3 className="text-2xl font-bold text-gray-700 mb-6">Contact Information</h3>
-        <div className="space-y-8">
-          <div className="flex items-center gap-6">
-            <MapPinIcon className="text-blue-500" size={28} />
-            <p className="text-xl text-gray-600">Mumbai, Maharashtra, India</p>
+    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-800 mb-8 sm:mb-12 lg:mb-16 text-center">
+      Contact Me
+    </h2>
+    
+    <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+      {/* Contact Information Card */}
+      <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 lg:p-10">
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-700 mb-6 sm:mb-8">
+          Contact Information
+        </h3>
+        
+        <div className="space-y-6 sm:space-y-8">
+          {/* Location */}
+          <div className="flex items-start sm:items-center gap-4 sm:gap-6">
+            <MapPinIcon className="text-blue-500 flex-shrink-0" size={24} sm:size={28} />
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600">
+              Mumbai, Maharashtra, India
+            </p>
           </div>
-          <div className="flex items-center gap-6">
-            <MailIcon className="text-blue-500" size={28} />
-            <p className="text-xl text-gray-600">ranvishwakarma122@gmail.com</p>
+          
+          {/* Email */}
+          <div className="flex items-start sm:items-center gap-4 sm:gap-6">
+            <MailIcon className="text-blue-500 flex-shrink-0" size={24} sm:size={28} />
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 break-all">
+              ranvishwakarma122@gmail.com
+            </p>
           </div>
-          <div className="flex items-center gap-6">
-            <PhoneIcon className="text-blue-500" size={28} />
-            <p className="text-xl text-gray-600">+91 9923384993</p>
+          
+          {/* Phone */}
+          <div className="flex items-start sm:items-center gap-4 sm:gap-6">
+            <PhoneIcon className="text-blue-500 flex-shrink-0" size={24} sm:size={28} />
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600">
+              +91 9923384993
+            </p>
           </div>
         </div>
-        <div className="flex gap-6 mt-8">
-          <a href="https://github.com/" target="_blank" className="text-gray-600 hover:text-blue-500 transition">
-            <GithubIcon size={28} />
+        
+        {/* Social Links */}
+        <div className="flex gap-4 sm:gap-6 mt-6 sm:mt-8">
+          <a 
+            href="https://github.com/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-gray-600 hover:text-blue-500 transition-colors hover:bg-gray-50 rounded-lg"
+          >
+            <GithubIcon size={24} sm:size={28} />
           </a>
-          <a href="https://www.linkedin.com/in/ranjeet-vishwakarma-17v/" target="_blank" className="text-gray-600 hover:text-blue-500 transition">
-            <LinkedinIcon size={28} />
+          <a 
+            href="https://www.linkedin.com/in/ranjeet-vishwakarma-17v/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-gray-600 hover:text-blue-500 transition-colors hover:bg-gray-50 rounded-lg"
+          >
+            <LinkedinIcon size={24} sm:size={28} />
           </a>
-          <a href="mailto:ranvishwakarma122@gmail.com" target="_blank" className="text-gray-600 hover:text-blue-500 transition">
-            <MailIcon size={28} />
+          <a 
+            href="mailto:ranvishwakarma122@gmail.com"
+            className="p-2 text-gray-600 hover:text-blue-500 transition-colors hover:bg-gray-50 rounded-lg"
+          >
+            <MailIcon size={24} sm:size={28} />
           </a>
         </div>
       </div>
 
-      {/* Contact Form */}
-      <div className="bg-white rounded-xl shadow-lg p-10">
-        <h3 className="text-2xl font-bold text-gray-700 mb-6">Send a Message</h3>
-        <form className="space-y-8">
+      {/* Contact Form Card */}
+      <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 lg:p-10">
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-700 mb-6 sm:mb-8">
+          Send a Message
+        </h3>
+        
+        <form className="space-y-6 sm:space-y-8">
+          {/* Name Field */}
           <div>
-            <label className="block text-gray-600 text-xl font-medium mb-2">Name</label>
+            <label 
+              htmlFor="name"
+              className="block text-gray-600 text-base sm:text-lg font-medium mb-2"
+            >
+              Name
+            </label>
             <input
+              id="name"
               type="text"
-              className="w-full px-5 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border border-gray-300 rounded-lg 
+                       text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
+                       focus:border-transparent transition-shadow"
               placeholder="Your full name"
             />
           </div>
+          
+          {/* Email Field */}
           <div>
-            <label className="block text-gray-600 text-xl font-medium mb-2">Email</label>
+            <label 
+              htmlFor="email"
+              className="block text-gray-600 text-base sm:text-lg font-medium mb-2"
+            >
+              Email
+            </label>
             <input
+              id="email"
               type="email"
-              className="w-full px-5 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border border-gray-300 rounded-lg 
+                       text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
+                       focus:border-transparent transition-shadow"
               placeholder="your.email@example.com"
             />
           </div>
+          
+          {/* Message Field */}
           <div>
-            <label className="block text-gray-600 text-xl font-medium mb-2">Message</label>
+            <label 
+              htmlFor="message"
+              className="block text-gray-600 text-base sm:text-lg font-medium mb-2"
+            >
+              Message
+            </label>
             <textarea
+              id="message"
               rows="5"
-              className="w-full px-5 py-3 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border border-gray-300 rounded-lg 
+                       text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 
+                       focus:border-transparent transition-shadow resize-y min-h-[120px]"
               placeholder="Your message here..."
             ></textarea>
           </div>
+          
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white text-lg px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            className="w-full bg-blue-600 text-white text-base sm:text-lg px-6 py-3 rounded-lg 
+                     hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 
+                     focus:ring-blue-500 focus:ring-offset-2 active:bg-blue-800"
           >
             Send Message
           </button>
@@ -328,7 +444,6 @@ const Portfolio = () => {
     </div>
   </div>
 </section>
-
 
 
       {/* Footer */}
