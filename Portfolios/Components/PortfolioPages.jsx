@@ -47,7 +47,7 @@ const Portfolio = () => {
     },
     {
       title: "Reebok Clone",
-      description: "Content generation tool using OpenAI API",
+      description: "Front End e-commerce solution with Javascript and Html & Css",
       tech: ["Javascript", "Firebase", "RestFull API", "Html & Css"],
       image: Reebok,
       link: "https://reebokclones.netlify.app/",
@@ -96,48 +96,20 @@ const Portfolio = () => {
         </div>
 
         {/* Mobile Menu */}
-        {/* Mobile Menu with Smooth Transitions */}
-<div 
-  className={`
-    fixed top-16 left-0 w-full transform transition-transform duration-300 ease-in-out md:hidden
-    ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}
-  `}
->
-  <div className="bg-white shadow-lg rounded-b-lg mx-4">
-    <div className="max-h-[80vh] overflow-y-auto">
-      {['Home', 'About', 'Resume', 'Projects', 'Skills', 'Contact'].map((item) => (
-        <a
-          key={item}
-          href={`#${item.toLowerCase()}`}
-          className={`
-            block px-6 py-4 text-base font-medium
-            border-b border-gray-100 last:border-b-0
-            text-gray-600 hover:text-blue-600 hover:bg-blue-50
-            transition-all duration-200 ease-in-out
-            ${activeSection === item.toLowerCase() ? 'text-blue-600 bg-blue-50' : ''}
-          `}
-          onClick={() => {
-            setIsMenuOpen(false);
-            // Smooth scroll to section
-            document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
-          }}
-        >
-          {item}
-        </a>
-      ))}
-    </div>
-  </div>
-  
-  {/* Backdrop */}
-  <div 
-    className={`
-      fixed inset-0 bg-black/20 backdrop-blur-sm z-[-1]
-      transition-opacity duration-300 ease-in-out
-      ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
-    `}
-    onClick={() => setIsMenuOpen(false)}
-  />
-</div>
+        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+          <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
+            {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="block px-3 py-2 text-gray-600 hover:text-blue-600"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
       </nav>
 
       {/* Hero Section */}
