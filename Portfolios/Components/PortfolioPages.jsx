@@ -33,31 +33,31 @@ const Portfolio = () => {
   const projects = [
     {
       title: "Nykaa Clone Website",
-      description: "Front End e-commerce solution with Javascript and Html & Css",
-      tech: ["Html", "Css", "Firebase", "RestFull API", "Javascript"],
+      description: "The Nykaa Website Clone is a responsive e-commerce platform replicating Nykaa’s design and core functionalities, featuring product filters, a cart, and user authentication. Built using HTML5, CSS3, JavaScript, and Firebase, it delivers a seamless shopping experience.",
+      tech: ["Html", "Css", "Firebase", "Restful Api", "Javascript"],
       image: Nyka,
       link: "https://cyberspacecrusders011.netlify.app/",
     },
     {
       title: "Task Management App",
-      description: "Collaborative task management platform",
+      description: "The Task Management System is a web application designed to organize, track, and manage tasks efficiently. Built with HTML5, CSS3, JavaScript, and LocalStorage, it includes features like task creation, categorization, status updates (e.g., pending/completed), and the ability to edit or delete tasks, offering a user-friendly productivity solution.",
       tech: ["Javascript", "Css", "Html"],
       image: Task,
       link: "https://masai-task-managerr.netlify.app/",
     },
     {
       title: "Reebok Clone",
-      description: "Front End e-commerce solution with Javascript and Html & Css",
-      tech: ["Javascript", "Firebase", "RestFull API", "Html & Css"],
+      description: "The Reebok Website Clone is an interactive, responsive e-commerce web application replicating Reebok's design and functionality. Developed using HTML5, CSS3, JavaScript, and Firebase, it includes features like user authentication, product filtering, wishlist, and a checkout system.",
+      tech: ["Javascript", "Firebase", "Restful Api", "Html & Css"],
       image: Reebok,
       link: "https://reebokclones.netlify.app/",
     },
   ];
 
   const skills = [
-    { name: "Frontend", items: ["Html & Css","React", "Redux", "Tailwind CSS"] },
+    { name: "Frontend", items: ["Html & Css","Javascript","React", "Redux", "Tailwind CSS"] },
     { name: "Backend", items: ["Node.js", "Express", "MongoDB", "MYSQL"] },
-    { name: "Tools", items: ["Git", "RestFull Api", "Firebase"] }
+    { name: "Tools", items: ["Git", "Restful Api", "Firebase"] }
   ];
 
   return (
@@ -98,7 +98,7 @@ const Portfolio = () => {
         {/* Mobile Menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
-            {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
+            {['Home', 'About', 'Resume','Projects', 'Skills', 'Contact'].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
