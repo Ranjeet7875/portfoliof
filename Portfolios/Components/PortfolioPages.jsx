@@ -11,7 +11,8 @@ const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   const handleScroll = () => {
-    const sections = ['home', 'about','resume', 'projects', 'skills', 'contact'];
+    const sections = ['home', 'about','skills', 'projects', 'contact', 'resume'];
+    {'home', 'about','resume', 'projects', 'skills', 'contact'}
     const current = sections.find(section => {
       const element = document.getElementById(section);
       if (element) {
@@ -37,13 +38,15 @@ const Portfolio = () => {
       tech: ["Html", "Css", "Firebase", "Restful Api", "Javascript"],
       image: Nyka,
       link: "https://cyberspacecrusders011.netlify.app/",
+      githublink:"https://github.com/Rushi162003/Cybespace_Crusaders_011"
     },
     {
       title: "Task Management App",
       description: "The Task Management System is a web application designed to organize, track, and manage tasks efficiently. Built with HTML5, CSS3, JavaScript, and LocalStorage, it includes features like task creation, categorization, status updates (e.g., pending/completed), and the ability to edit or delete tasks, offering a user-friendly productivity solution.",
       tech: ["Javascript", "Css", "Html"],
       image: Task,
-      link: "https://masai-task-managerr.netlify.app/",
+      link: "https://task-manager-cw.netlify.app/",
+      githublink:"https://github.com/Alpha-330/Construct-Week-Project?tab=readme-ov-file"
     },
     {
       title: "Reebok Clone",
@@ -51,6 +54,7 @@ const Portfolio = () => {
       tech: ["Javascript", "Firebase", "Restful Api", "Html & Css"],
       image: Reebok,
       link: "https://reebokclones.netlify.app/",
+      githublink:"https://github.com/Ranjeet7875/Backend_Busters_B41"
     },
   ];
 
@@ -80,7 +84,7 @@ const Portfolio = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Resume','Projects', 'Skills', 'Contact'].map((item) => (
+              {['Home', 'About', 'Skills','Projects',  'Contact','Resume'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -144,14 +148,14 @@ const Portfolio = () => {
       {/* About Section */}
       <section id="about" className="py-24 bg-white px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">About Me</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">About</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <img src={AboutImg} alt="About" className="rounded-lg shadow-lg" />
             </div>
             <div>
               <p className="text-gray-600 mb-6">
-              I am a passionate Full Stack Developer eager to build impactful web applications. I specialize in JavaScript and have hands-on experience with modern frameworks like React and Node.js through academic projects and personal development.
+               i am passionate Full Stack Developer eager to build impactful web applications. I specialize in JavaScript and have hands-on experience with modern frameworks like React and Node.js through academic projects and personal development.
               </p>
               <p className="text-gray-600 mb-6">
               My approach emphasizes writing clean, efficient code and crafting intuitive, engaging user experiences. As a fresher, I am committed to continuous learning and contributing to innovative projects that solve real-world challenges.
@@ -207,6 +211,14 @@ const Portfolio = () => {
             >
               View Project <ExternalLinkIcon size={16} />
             </a>
+            <a
+              href={project.githublink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 flex items-center gap-2"
+            >
+              View Code <GithubIcon size={16} />
+            </a>
           </div>
         </div>
       ))}
@@ -223,7 +235,7 @@ const Portfolio = () => {
     <div className="flex justify-center mb-8">
       <a 
         href={Resume} 
-        download="Resume.pdf" 
+        download="Ranjeet_Vishwakarma_Resume.pdf" 
         target="_blank"       
         rel="noopener noreferrer" 
         onClick={(e) => {
@@ -231,7 +243,7 @@ const Portfolio = () => {
           window.open(Resume, '_blank'); 
           const link = document.createElement('a');
           link.href = Resume;
-          link.download = 'Resume.pdf'; 
+          link.download = 'Ranjeet_Vishwakarma_Resume.pdf'; 
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link); 
