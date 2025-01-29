@@ -4,7 +4,7 @@ import Portphoto from './Imge&Resume/photos-Photoroom.png'
 import Nyka from './Imge&Resume/nykaa.png'
 import Task from './Imge&Resume/Task.png'
 import Reebok from './Imge&Resume/reebok.png'
-import Resume from './Imge&Resume/RanjeetShivprasadVishwakarma-FullStackWebDeveloper-jz3q.pdf'
+import Resume from './Imge&Resume/RanjeetShivprasadVishwakarma-FullStackWebDeveloper-R63A.pdf'
 import AboutImg from './Imge&Resume/rb_2147792093.png'
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -223,16 +223,25 @@ const Portfolio = () => {
     <div className="flex justify-center mb-8">
       <a 
         href={Resume} 
-        download
-        target="_blank"
+        download="Resume.pdf" 
+        target="_blank"       
+        rel="noopener noreferrer" 
+        onClick={(e) => {
+          e.preventDefault(); 
+          window.open(Resume, '_blank'); 
+          const link = document.createElement('a');
+          link.href = Resume;
+          link.download = 'Resume.pdf'; 
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link); 
+        }}
         className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
       >
         <DownloadIcon size={20} />
         Download Resume
       </a>
     </div>
-
-    
   </div>
 </section>
       {/* Skills Section */}
