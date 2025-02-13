@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { GithubIcon, LinkedinIcon, MailIcon, ExternalLinkIcon, MenuIcon, XIcon, MapPinIcon, PhoneIcon, DownloadIcon } from 'lucide-react';
 import Portphoto from './Imge&Resume/photos-Photoroom.png'
 import Nyka from './Imge&Resume/nykaa.png'
+import MedTrack from './Imge&Resume/MedTrack.png'
 import Task from './Imge&Resume/Task.png'
 import Reebok from './Imge&Resume/reebok.png'
 import Resume from './Imge&Resume/RanjeetShivprasadVishwakarma-FullStackWebDeveloper-R63A.pdf'
@@ -32,6 +33,14 @@ const Portfolio = () => {
   }, []);
 
   const projects = [
+    {
+      title: "MediTrack",
+      description: "MediTrack is a smart medication management app that helps users track, manage, and stay consistent with their medication schedules. It features real-time reminders, adherence tracking, and an interactive calendar to ensure users never miss a dose.",
+      tech: ["HTML", "CSS", "Tailwind CSS", "React JS", "JavaScript", "Firebase"],
+      image: MedTrack,
+      link: "https://meditrackapplication.netlify.app/",
+      githublink: "https://github.com/PrashantPalve01/Medication-Management-App"
+    },
     {
       title: "Nykaa Clone Website",
       description: "The Nykaa Website Clone is a responsive e-commerce platform replicating Nykaa’s design and core functionalities, featuring product filters, a cart, and user authentication. Built using HTML5, CSS3, JavaScript, and Firebase, it delivers a seamless shopping experience.",
